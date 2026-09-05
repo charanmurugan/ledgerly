@@ -42,7 +42,7 @@ function App(){
 
   const addTransaction=()=>{
     if(!draft.merchant || !draft.amount){notify("Enter a merchant and amount");return}
-    const t={id:crypto.randomUUID(),date:draft.date||new Date().toISOString().slice(0,10),merchant:draft.merchant,amount:Number(draft.amount),type:draft.type||"expense",category:draft.category||"Needs review",account:draft.account||"Main Checking",tags:draft.tags||[]};
+    const t={date:draft.date||new Date().toISOString().slice(0,10),merchant:draft.merchant,amount:Number(draft.amount),type:draft.type||"expense",category:draft.category||"Needs review",account:draft.account||"Main Checking",tags:draft.tags||[]};
     fetch("/api/transactions",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(t)})
       .then(r=>r.ok?r.json():Promise.reject()).then(saved=>{
         save({...data,transactions:[{...saved,amount:Number(saved.amount)},...data.transactions]},"Entry added");
