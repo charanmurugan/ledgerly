@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-transactions
+      author: ledgerly
+      changes:
+        - createTable:
+            tableName: transactions
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints: {primaryKey: true, nullable: false}
+              - column:
+                  name: date
+                  type: DATE
+                  constraints: {nullable: false}
+              - column:
+                  name: merchant
+                  type: VARCHAR(255)
+                  constraints: {nullable: false}
+              - column:
+                  name: amount
+                  type: DECIMAL(19,4)
+                  constraints: {nullable: false}
+              - column:
+                  name: type
+                  type: VARCHAR(32)
+                  constraints: {nullable: false}
+              - column:
+                  name: category
+                  type: VARCHAR(100)
+                  constraints: {nullable: false}
+              - column:
+                  name: account
+                  type: VARCHAR(100)
+                  constraints: {nullable: false}
+              - column:
+                  name: tags
+                  type: TEXT
